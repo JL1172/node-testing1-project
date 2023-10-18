@@ -149,7 +149,7 @@ class Car {
     this.odometer += distance;
     this.tank -= (distance / this.mpg );
     return this.odometer;
-    } return "can no longer drive"
+    } return this.odometer;
   }
 
   /**
@@ -168,7 +168,7 @@ class Car {
     if (this.tank + gallons <= this.capacity) {
       this.tank+= gallons
     } else {
-      return this.tanks; 
+      this.tanks = this.capacity; 
     }
   }
 }
