@@ -162,7 +162,7 @@ describe('[Exercise 6] Car', () => {
     focus.drive(600);
     expect(focus.tank).toBe(0);
     focus.refuel(25);
-    expect(focus.tank).toBe(0); 
+    expect(focus.tank).toBe(20); 
     focus.refuel(20);
     expect(focus.tank).toBe(20)
     focus.refuel(2);
@@ -171,14 +171,14 @@ describe('[Exercise 6] Car', () => {
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
-  test('[19] resolves true if passed an even number', () => {
+  test('[19] resolves true if passed an even number',async() => {
     const expectedResult = true; 
-    const result = utils.isEvenNumberAsync(4);
+    const result = await utils.isEvenNumberAsync(4);
     expect(result).toBe(expectedResult);
   })
-  test('[20] resolves false if passed an odd number', () => {
+  test('[20] resolves false if passed an odd number', async() => {
     const expectedResult = false; 
-    const result = utils.isEvenNumberAsync(5);
+    const result = await utils.isEvenNumberAsync(5);
     expect(result).toBe(expectedResult);
   })
 })
