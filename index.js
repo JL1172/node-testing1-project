@@ -7,7 +7,11 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  // ✨ implement
+  let newObj = {}; 
+  for (let key in obj) {
+    if (!(key in newObj)) newObj[key] = obj[key].trim();
+  }
+  return newObj;
 }
 
 /**
@@ -20,7 +24,14 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  for (let key in obj) {
+    obj[key] = obj[key].trim();
+  }
+  return obj;
 }
+// let obj = { name: '  jane  ', foo : "bar    " }
+// const result = trimPropertiesMutation(obj)
+// console.log(obj)
 
 /**
  * [Exercise 3] findLargestInteger finds the largest integer in an array of objects { integer: 1 }
