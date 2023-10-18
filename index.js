@@ -167,10 +167,8 @@ class Car {
     // ✨ implement
     if (this.tank + gallons <= this.capacity) {
       this.tank+= gallons
-      return this.odometer;
     } else {
-      this.tanks = this.capacity; 
-      return this.odometer;
+      this.tanks += this.capacity; 
     }
   }
 }
