@@ -86,6 +86,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.index = 0
+    this.seasonsList = ["summer","fall","winter","spring","summer"]
   }
 
   /**
@@ -102,6 +104,13 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    if (this.index === 5) {
+      this.index = 0;
+    } else {
+    const returnResult = this.seasonsList[this.index];
+    this.index++
+    return returnResult;
+    }
   }
 }
 
@@ -116,6 +125,9 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.name = name,
+    this.mpg = mpg;
+    this.capacity = tankSize
   }
 
   /**
@@ -133,6 +145,11 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    if ((this.tank - (distance / this.mpg))  >= 0) {
+    this.odometer += distance;
+    this.tank -= (distance / this.mpg );
+    return this.odometer;
+    } return "can no longer drive"
   }
 
   /**
@@ -148,6 +165,11 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    if (this.tank + gallons <= this.capacity) {
+      this.tank+= gallons
+    } else {
+      return this.tanks; 
+    }
   }
 }
 

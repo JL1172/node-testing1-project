@@ -77,26 +77,97 @@ describe('[Exercise 5] Seasons', () => {
   beforeEach(() => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
-  // test('[9] the FIRST call of seasons.next returns "summer"', () => {})
-  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-  // test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-  // test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-  // test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-  // test('[14] the 40th call of seasons.next returns "spring"', () => {})
+  test('[9] the FIRST call of seasons.next returns "summer"', () => {
+    const result = seasons.next(); 
+    expect(result).toBe("summer");
+  })
+  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    seasons.next(); 
+    const result2 = seasons.next(); 
+    expect(result2).toBe("fall");
+  })
+  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    seasons.next(); 
+    seasons.next(); 
+    const result3 = seasons.next(); 
+    expect(result3).toBe("winter");
+  })
+  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    seasons.next(); 
+    seasons.next(); 
+    seasons.next(); 
+    const result4 = seasons.next(); 
+    expect(result4).toBe("spring");
+  })
+  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    seasons.next(); 
+    seasons.next(); 
+    seasons.next(); 
+    seasons.next(); 
+    const result5 = seasons.next(); 
+    expect(result5).toBe("summer");
+  })
+  test('[14] the 40th call of seasons.next returns "spring"', () => {
+    for (let i = 0; i < 39; i++) {
+      seasons.next();
+    }
+    let result40 = seasons.next();
+    expect(result40).toBe("spring")
+  })
 })
 
-// describe('[Exercise 6] Car', () => {
-//   let focus
-//   beforeEach(() => {
-//     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
-//   })
-//   // test('[15] driving the car returns the updated odometer', () => {})
-//   // test('[16] driving the car uses gas', () => {})
-//   // test('[17] refueling allows to keep driving', () => {})
-//   // test('[18] adding fuel to a full tank has no effect', () => {})
-// })
+describe('[Exercise 6] Car', () => {
+  let focus
+  beforeEach(() => {
+    focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
+  })
+  test('[15] driving the car returns the updated odometer', () => {
+    const expectedResult = 10;
+    let result = focus.drive(10);
+    expect(focus.odometer).toBe(expectedResult);
+    expect(result).toBe*(expectedResult)
+  })
+  test('[16] driving the car uses gas', () => {
+    const expectedOutput = (tank,miles,mpg) => {
+      return tank - (miles/mpg)
+    }
+    let tank = 20;
+    let miles = 30
+    let expected = expectedOutput(tank,miles,30);
+    focus.drive(miles);
+    expect(focus.tank).toBe(expected); 
 
-// describe('[Exercise 7] isEvenNumberAsync', () => {
-//   // test('[19] resolves true if passed an even number', () => {})
-//   // test('[20] resolves false if passed an odd number', () => {})
-// })
+    miles = 60
+    expected = expectedOutput(19,60,30);
+    focus.drive(miles);
+    expect(focus.tank).toBe(expected);
+  })
+  test("[17]Driving eventually leads to empty",() => {
+    focus.drive(600);
+    expect(focus.tank).toBe(0);
+    let result = focus.drive(1);
+    expect(focus.tank).toBe(0)
+    expect(result).toBe('can no longer drive'); 
+  })
+  test('[18] refueling allows to keep driving', () => {
+    focus.drive(600);
+    expect(focus.tank).toBe(0);
+    focus.refuel(15);
+    expect(focus.tank).toBe(15); 
+  })
+  test('[19] adding fuel to a full tank has no effect', () => {
+    focus.drive(600);
+    expect(focus.tank).toBe(0);
+    focus.refuel(25);
+    expect(focus.tank).toBe(0); 
+    focus.refuel(20);
+    expect(focus.tank).toBe(20)
+    focus.refuel(2);
+    expect(focus.tank).toBe(20); 
+  })
+})
+
+describe('[Exercise 7] isEvenNumberAsync', () => {
+  // test('[19] resolves true if passed an even number', () => {})
+  // test('[20] resolves false if passed an odd number', () => {})
+})
