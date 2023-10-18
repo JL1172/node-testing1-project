@@ -29,9 +29,7 @@ function trimPropertiesMutation(obj) {
   }
   return obj;
 }
-// let obj = { name: '  jane  ', foo : "bar    " }
-// const result = trimPropertiesMutation(obj)
-// console.log(obj)
+
 
 /**
  * [Exercise 3] findLargestInteger finds the largest integer in an array of objects { integer: 1 }
@@ -42,7 +40,12 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  const arr = [];
+  for (let i in integers) {
+    arr.push(integers[i].integer)
+  }
+  arr.sort((a,b)=> a - b);
+  return arr.at(-1); 
 }
 
 class Counter {
@@ -52,6 +55,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber
   }
 
   /**
@@ -68,6 +72,11 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+     if (this.initialNumber > 0) {
+       return this.initialNumber--; 
+     } else {
+      return 0;
+     }
   }
 }
 
